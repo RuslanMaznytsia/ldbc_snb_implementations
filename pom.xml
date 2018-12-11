@@ -19,7 +19,9 @@
         <module>common</module>
         <module>cypher</module>
         <module>postgres</module>
-        <module>sparql</module>
+        <!--module>sparql</module-->
+        <module>interactive/janusgraph</module>
+        <!--<module>interactive/janusgraph/driver</module>-->
     </modules>
 
     <build>

@@ -5,9 +5,12 @@ import com.ldbc.driver.OperationHandler;
 import com.ldbc.driver.ResultReporter;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcQuery2;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcQuery2Result;
+import com.tinkerpop.blueprints.Compare;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.apache.tinkerpop.gremlin.structure.Vertex;
+import com.tinkerpop.gremlin.java.GremlinPipeline;
+import com.tinkerpop.pipes.util.structures.Row;
 import javax.naming.directory.SchemaViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +25,13 @@ public class LdbcQuery2Handler implements OperationHandler<LdbcQuery2,JanusGraph
     @Override
     public void executeOperation(final LdbcQuery2 operation, JanusGraphDb.RemoteDBConnectionState dbConnectionState, ResultReporter
             resultReporter) throws DbException {
-/*        long person_id = operation.personId();
+
+        /*
+        long person_id = operation.personId();
         final long maxDate = operation.maxDate().getTime();//QueryUtils.addDays(operation.maxDate(),1);
         logger.debug("Query 2 called on Person id: {} with max date {}", person_id, maxDate);
         int limit = operation.limit();
-        JanusGraphDb.BasicClient client = dbConnectionState.client();
+        JanusGraphDb.BasicClient client = dbConnectionState.getClient();
 
         Vertex root = null;
         try {
